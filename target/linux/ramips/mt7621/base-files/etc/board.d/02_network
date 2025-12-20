@@ -80,6 +80,7 @@ ramips_setup_interfaces()
 	keenetic,kn-3510|\
 	meig,slt866|\
 	openfi,5pro|\
+	todaair,in1251y|\
 	wavlink,ws-wn572hp3-4g|\
 	winstars,ws-wn583a6|\
 	yuncore,ax820|\
@@ -304,6 +305,11 @@ ramips_setup_macs()
 		lan_mac=$(mtd_get_mac_ascii Config lan_hwaddr)
 		wan_mac=$(mtd_get_mac_ascii Config wan_hwaddr)
 		label_mac=$lan_mac
+		;;
+	todaair,in1251y)
+		load_mac=$(mtd_get_mac_binary factory 0x4)
+		lan_mac=$(macaddr_add "$load_mac" -1)
+		wan_mac=$(macaddr_add "$load_mac" -2)
 		;;
 	tplink,er605-v2)
 		CI_UBIPART="firmware"
