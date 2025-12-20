@@ -90,23 +90,31 @@ for (let phy_name, phy in board.wlan) {
 		if (length(info.radios) > 0)
 			id += `\nset ${s}.radio='${radio.index}'`;
 
+		if (band_name == '2g')
+			ssid_wlan = "_2.4G";
+		else
+			ssid_wlan = "_5G";
+
 		print(`set ${s}=wifi-device
 set ${s}.type='mac80211'
 set ${s}.${id}
 set ${s}.band='${band_name}'
 set ${s}.channel='${channel}'
 set ${s}.htmode='${htmode}'
-set ${s}.country='${country || ''}'
+set ${s}.country='${country || 'CN'}'
 set ${s}.num_global_macaddr='${num_global_macaddr || ''}'
-set ${s}.disabled='${defaults ? 0 : 1}'
+set ${s}.legacy_rates='0'
+set ${s}.disabled='${defaults ? 1 : 0}'
 
 set ${si}=wifi-iface
 set ${si}.device='${name}'
 set ${si}.network='lan'
 set ${si}.mode='ap'
-set ${si}.ssid='${defaults?.ssid || "OpenWrt"}'
+set ${si}.ssid='${defaults?.ssid || "OpenWrt" + ssid_wlan }'
 set ${si}.encryption='${defaults?.encryption || "none"}'
 set ${si}.key='${defaults?.key || ""}'
+set ${si}.disassoc_low_ack='0'
+set ${si}.isolate='0'
 
 `);
 		config[name] = {};
