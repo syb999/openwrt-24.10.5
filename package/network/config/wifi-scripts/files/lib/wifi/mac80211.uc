@@ -68,7 +68,15 @@ for (let phy_name, phy in board.wlan) {
 		if (!phy.path)
 			continue;
 
+		let mac_suffix = "";
 		let macaddr = trim(readfile(`/sys/class/ieee80211/${phy_name}/macaddress`));
+		if (macaddr) {
+				let macparts = split(macaddr, ":");
+				if (length(macparts) >= 6) {
+				        mac_suffix = uc(macparts[3] + macparts[4] + macparts[5]);
+				}
+		}
+
 		if (radio_exists(phy.path, macaddr, phy_name, radio.index))
 			continue;
 
@@ -91,9 +99,9 @@ for (let phy_name, phy in board.wlan) {
 			id += `\nset ${s}.radio='${radio.index}'`;
 
 		if (band_name == '2g')
-			ssid_wlan = "_2.4G";
+			ssid_wlan = "_2.4G_" + mac_suffix;
 		else
-			ssid_wlan = "_5G";
+			ssid_wlan = "_5G_" + mac_suffix;
 
 		print(`set ${s}=wifi-device
 set ${s}.type='mac80211'
