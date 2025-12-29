@@ -6,6 +6,10 @@ board_config_update
 board=$(board_name)
 
 case "$board" in
+100msh,hq65)
+	ucidef_set_led_netdev "wan" "WAN" "green:wan" "eth0"
+	ucidef_set_led_wlan "wlan" "WLAN" "green:wlan" "phy0tpt"
+	;;
 8dev,carambola2)
 	ucidef_set_led_netdev "lan" "LAN" "orange:eth0" "eth0"
 	ucidef_set_led_switch "wan" "WAN" "orange:eth1" "switch0" "0x04"

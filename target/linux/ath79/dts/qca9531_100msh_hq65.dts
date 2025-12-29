@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+#include "qca9531_100msh_hq65.dtsi"
+
+/ {
+	compatible = "100msh,hq65", "qca,qca9531";
+	model = "100MSH HQ65";
+};
+
+&nor_firmware {
+	compatible = "denx,uimage";
+	label = "firmware";
+};
+
+// "Disable" unpopulated GMAC1
+
+&eth1 {
+	compatible = "syscon", "simple-mfd";
+};
+
+&led_status {
+	function = LED_FUNCTION_STATUS;
+	color = <LED_COLOR_ID_RED>;
+};
+
+&led_wan {
+	function = LED_FUNCTION_WAN;
+	color = <LED_COLOR_ID_GREEN>;
+};
+
+&led_wlan {
+	function = LED_FUNCTION_WLAN;
+	color = <LED_COLOR_ID_GREEN>;
+};

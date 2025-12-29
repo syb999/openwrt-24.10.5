@@ -195,6 +195,15 @@ define Build/zyxel-tar-bz2
 endef
 
 
+define Device/100msh_hq65
+  SOC := qca9531
+  DEVICE_VENDOR := 100MSH
+  DEVICE_MODEL := HQ65
+  DEVICE_PACKAGES := panel-ap-setup kmod-i2c-gpio i2c-tools
+  IMAGE_SIZE := 16000k
+endef
+TARGET_DEVICES += 100msh_hq65
+
 define Device/8dev_carambola2
   SOC := ar9331
   DEVICE_VENDOR := 8devices
