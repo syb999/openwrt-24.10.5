@@ -1,0 +1,43 @@
+#!/bin/sh
+
+OUTPUT_LOG="/var/log/ssd1306.log"
+MAX_LINES=5
+MSG_BUFFER="/tmp/pppwn_buffer.$$"
+
+: > "$OUTPUT_LOG"
+: > "$MSG_BUFFER"
+
+(
+    while true; do
+        logread -f 2>/dev/null | while IFS= read -r line; do
+            if echo "$line" | grep -q "pppwn\["; then
+                msg=$(echo "$line" | sed 's/.*pppwn\[[0-9]*\]: //')
+                [ -n "$msg" ] && echo "$msg" >> "$MSG_BUFFER"
+            fi
+        done
+        sleep 1
+    done
+) &
+READER_PID=$!
+
+while true; do
+    if [ -s "$MSG_BUFFER" ]; then
+        while IFS= read -r msg; do
+            [ -z "$msg" ] && continue
+            
+            CURRENT_OUTPUT=$(wc -l < "$OUTPUT_LOG" 2>/dev/null | awk '{print $1}')
+            
+            if [ "$CURRENT_OUTPUT" -lt "$MAX_LINES" ]; then
+                echo " $msg" >> "$OUTPUT_LOG"
+            else
+                tail -n $((MAX_LINES-1)) "$OUTPUT_LOG" > /tmp/pppwn_rotate.$$
+                echo " $msg" >> /tmp/pppwn_rotate.$$
+                mv /tmp/pppwn_rotate.$$ "$OUTPUT_LOG"
+            fi
+        done < "$MSG_BUFFER"
+
+        > "$MSG_BUFFER"
+    fi
+    
+    sleep 1
+done
