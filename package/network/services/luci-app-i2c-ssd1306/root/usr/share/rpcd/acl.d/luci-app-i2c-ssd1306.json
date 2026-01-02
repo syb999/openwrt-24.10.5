@@ -1,0 +1,14 @@
+{
+    "luci-app-i2c-ssd1306": {
+        "description": "Grant UCI access for luci-app-i2c-ssd1306",
+        "read": {
+            "uci": ["i2c-ssd1306"],
+            "file": {
+                "/usr/sbin/i2c-ssd1306": ["exec"]
+            }
+        },
+        "write": {
+            "uci": ["i2c-ssd1306"]
+        }
+    }
+}
