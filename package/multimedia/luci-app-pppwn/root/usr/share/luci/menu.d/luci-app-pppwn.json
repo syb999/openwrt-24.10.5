@@ -1,0 +1,14 @@
+{
+    "admin/services/pppwn": {
+        "title": "PPPwn",
+        "order": 60,
+        "action": {
+            "type": "view",
+            "path": "services/pppwn"
+        },
+        "depends": {
+            "acl": ["luci-app-pppwn"],
+            "uci": {"pppwn": true}
+        }
+    }
+}

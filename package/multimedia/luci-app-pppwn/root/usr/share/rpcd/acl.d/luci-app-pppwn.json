@@ -1,0 +1,15 @@
+{
+    "luci-app-pppwn": {
+        "description": "Grant UCI access for luci-app-pppwn",
+        "read": {
+            "uci": ["pppwn"],
+            "file": {
+                "/usr/bin/pppwnlog": ["exec"],
+                "/usr/bin/pppwn": ["exec"]
+            }
+        },
+        "write": {
+            "uci": ["pppwn"]
+        }
+    }
+}

@@ -1,31 +1,66 @@
 #!/bin/sh /etc/rc.common
 # Copyright (C) 2008-2022 OpenWrt.org
 
-START=99
 USE_PROCD=1
-
-PROG="/usr/bin/pppwn"
+START=99
 
 start_service() {
     config_load "pppwn"
 
-    config_get "port" "config" "port"
-    config_get "fwver" "config" "fwver"
-
     local enable
     config_get_bool enable config enable 0
+    [ "$enable" -eq 1 ] || return 0
+    
+    local source fwver
+    config_get source config source
+    config_get fwver config fwver
+    [ -n "$source" ] && [ -n "$fwver" ] || return 1
+    
+    local stage1="/etc/pppwn/stage1_$fwver.bin"
+    local stage2="/etc/pppwn/stage2_$fwver.bin"
 
-    [ "${enable}" -gt 0 ] || return
+    mkdir -p /var/log/
+    > /var/log/pppwn.log
 
     procd_open_instance
-    procd_set_param command $PROG --interface "$port" --fw "$fwver" --stage1 "/etc/pppwn/stage1.bin" --stage2 "/etc/pppwn/stage2.bin" -a
+    procd_set_param command /usr/bin/pppwn
+    procd_append_param command --interface "$source"
+    procd_append_param command --fw "$fwver"
+    procd_append_param command --stage1 "$stage1"
+    procd_append_param command --stage2 "$stage2"
+    procd_append_param command -a
+    
+    procd_set_param respawn
+    procd_set_param pidfile /var/run/pppwn.pid
     procd_set_param stdout 1
-    #procd_set_param stderr 1
-    procd_set_param respawn                                                                                                         
-    procd_close_instance  
+    procd_set_param stderr 1
+    procd_close_instance
+
+    if [ -e "/usr/bin/pppwnlog" ]; then
+        if [ -z "$(busybox ps | grep pppwnlog | grep -v grep)" ]; then
+            /usr/bin/pppwnlog &
+        fi
+    fi
 }
 
 stop_service() {
-    service_stop $PROG
+    killall pppwn 2>/dev/null
+    killall pppwnlog 2>/dev/null
+    rm -f /var/run/pppwn.pid
 }
 
+status_service() {
+    if [ -f /var/run/pppwn.pid ]; then
+        local pid=$(head -n1 /var/run/pppwn.pid 2>/dev/null)
+        if [ -n "$pid" ] && [ -d "/proc/$pid" ]; then
+            echo "running"
+            return 0
+        fi
+    fi
+    echo "stopped"
+    return 1
+}
+
+service_triggers() {
+    procd_add_reload_trigger "pppwn"
+}
