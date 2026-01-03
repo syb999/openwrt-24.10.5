@@ -30,7 +30,6 @@ start_service() {
     procd_append_param command --stage2 "$stage2"
     procd_append_param command -a
     
-    procd_set_param respawn
     procd_set_param pidfile /var/run/pppwn.pid
     procd_set_param stdout 1
     procd_set_param stderr 1
