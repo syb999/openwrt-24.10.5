@@ -139,6 +139,16 @@ define Device/asus_rt-n14u
 endef
 TARGET_DEVICES += asus_rt-n14u
 
+define Device/betternet_betterspot
+  SOC := mt7620a
+  IMAGE_SIZE := 15872k
+  DEVICE_VENDOR := Betternet
+  DEVICE_MODEL := Betterspot
+  DEVICE_PACKAGES := panel-ap-setup
+  SUPPORTED_DEVICES += betternet_betterspot
+endef
+TARGET_DEVICES += betternet_betterspot
+
 define Device/bdcom_wap2100-sk
   SOC := mt7620a
   IMAGE_SIZE := 15808k
