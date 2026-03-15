@@ -327,6 +327,10 @@ ramips_setup_macs()
 		wan_mac=$(macaddr_add "$lan_mac" 8)
 		label_mac=$lan_mac
 		;;
+	maipu,igw401-100-p)
+		lan_mac=$(mtd_get_mac_binary factory 0xe000)
+		wan_mac=$(macaddr_add "$load_mac" -1)
+		;;
 	mts,wg430223)
 		wan_mac=$(mtd_get_mac_encrypted_arcadyan "board_data")
 		label_mac=$wan_mac

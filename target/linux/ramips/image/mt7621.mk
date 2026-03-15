@@ -2027,6 +2027,19 @@ define Device/linksys_re7000
 endef
 TARGET_DEVICES += linksys_re7000
 
+define Device/maipu_igw401-100-p
+  $(Device/nand)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 120320k
+  IMAGES += factory.bin
+  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+	check-size
+  DEVICE_VENDOR := MAIPU
+  DEVICE_MODEL := IGW401-100-P
+  DEVICE_PACKAGES := -wpad-basic-mbedtls -iwinfo -uboot-envtools
+endef
+TARGET_DEVICES += maipu_igw401-100-p
+
 define Device/mediatek_ap-mt7621a-v60
   $(Device/dsa-migration)
   IMAGE_SIZE := 7872k
