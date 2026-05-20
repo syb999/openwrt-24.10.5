@@ -79,6 +79,7 @@ ramips_setup_interfaces()
 	humax,e10|\
 	keenetic,kn-3510|\
 	meig,slt866|\
+	oem,243p|\
 	openfi,5pro|\
 	todaair,in1251y|\
 	wavlink,ws-wn572hp3-4g|\

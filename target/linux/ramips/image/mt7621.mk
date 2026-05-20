@@ -2460,6 +2460,16 @@ define Device/netis_wf2881
 endef
 TARGET_DEVICES += netis_wf2881
 
+define Device/oem_243p
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := OEM
+  DEVICE_MODEL := 243P
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta panel-ap-setup -uboot-envtools
+endef
+TARGET_DEVICES += oem_243p
+
 define Device/openfi_5pro
   $(Device/dsa-migration)
   IMAGE_SIZE := 65216k
