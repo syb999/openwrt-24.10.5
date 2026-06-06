@@ -28,3 +28,46 @@ config extension '6002'
 	option callerid 'User 6002'
 	option record '0'
 
+config ivr_option
+	option digit '1'
+	option action 'extension'
+	option target '801'
+
+config ivr_option
+	option digit '2'
+	option action 'extension'
+	option target '8012'
+
+config ivr_option
+	option digit '0'
+	option action 'hangup'
+
+config pstn_handler 'pstn_handler'
+	option mode 'normal'
+	option playback_enabled '0'
+	option playback_dir '/usr/share/asterisk/sounds'
+	option playback_file 'ring'
+	option playback_loop '1'
+	option welcome 'ivr-welcome'
+	option timeout '10'
+	option invalid 'ivr-invalid'
+
+config iax2
+    option bindport '4569'
+    option bindaddr '0.0.0.0'
+
+config iax2_trunk
+    option name 'server-a'
+    option enabled '1'
+    option host '192.168.1.10'
+    option port '4569'
+    option secret 'shared_secret'
+    option dial_prefix '81'
+    option context 'from_iax'
+    option qualify '1'
+
+config confbridge_global
+        option enable_moh '0'
+        option max_members '20'
+        option record_conference '0'
+

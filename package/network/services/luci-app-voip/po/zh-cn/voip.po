@@ -43,7 +43,7 @@ msgid "Running"
 msgstr "运行中"
 
 msgid "Stopped"
-msgid "已停止"
+msgstr "已停止"
 
 msgid "SIP Registry Status"
 msgstr "SIP注册状态"
@@ -59,9 +59,6 @@ msgstr "名称"
 
 msgid "Host"
 msgstr "主机"
-
-msgid "Status"
-msgstr "状态"
 
 msgid "No peers found"
 msgstr "未找到分机"
@@ -127,12 +124,6 @@ msgstr "密码"
 msgid "Inbound Context"
 msgstr "来电上下文"
 
-msgid "external"
-msgstr "external"
-
-msgid "internal"
-msgstr "internal"
-
 msgid "NAT Support"
 msgstr "NAT支持"
 
@@ -151,9 +142,6 @@ msgstr "分机号码"
 
 msgid "Caller ID"
 msgstr "来电显示"
-
-msgid "Enabled"
-msgstr "启用"
 
 msgid "Auto Record"
 msgstr "自动录音"
@@ -225,12 +213,6 @@ msgid "Save & Apply"
 msgstr "保存并应用"
 
 msgid "Enabled"
-msgstr "已启用"
-
-msgid "Disabled"
-msgstr "已禁用"
-
-msgid "Enabled"
 msgstr "启用"
 
 msgid "Disabled"
@@ -241,7 +223,6 @@ msgstr "SRTP支持"
 
 msgid "Enable SRTP encryption for secure calls"
 msgstr "启用SRTP加密以保护通话安全"
-
 
 msgid "After saving configuration, please go to Status page, click Apply Changes, then click Restart VoIP to make settings take effect."
 msgstr "配置修改保存后，请前往状态页面，点击应用更改，然后点击重启VoIP使配置生效。"
@@ -283,12 +264,329 @@ msgstr "Peer (仅呼出)"
 msgid "User (inbound only)"
 msgstr "User (仅呼入)"
 
+# Server Peers page - table headers and UI
+msgid "Host/IP"
+msgstr "主机/IP"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Context"
+msgstr "上下文"
+
+msgid "NAT"
+msgstr "NAT"
+
+msgid "Qualify"
+msgstr "心跳检测"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Friend"
+msgstr "双向"
+
+msgid "Peer"
+msgstr "仅呼出"
+
+msgid "User"
+msgstr "仅呼入"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Delete server peer"
+msgstr "删除服务器对端"
+
 msgid "About Dial Prefix"
 msgstr "关于拨号前缀"
 
-msgid "When you dial a number starting with the prefix (e.g., 81), Asterisk will route the call to the corresponding remote server."
-msgstr "当您拨打以前缀（例如 81）开头的号码时，Asterisk 会将呼叫路由到对应的远程服务器。"
+msgid "Dial prefix to route calls to this server (e.g., 81 for extension 816001)."
+msgstr "拨号前缀，用于将呼叫路由到此服务器（例如 81 表示拨打 816001）。"
 
-msgid "Example: If prefix is 81 and you dial 816001, it will call extension 6001 on the remote server."
-msgstr "例如：前缀为 81，拨打 816001 时，将呼叫远程服务器上的分机 6001。"
+msgid "Add New Server Peer"
+msgstr "添加新服务器对端"
+
+msgid "Save New Peer"
+msgstr "保存新对端"
+
+msgid "Server Name and Host/IP are required"
+msgstr "服务器名称和主机/IP为必填项"
+
+msgid "SIP INFO"
+msgstr "SIP INFO"
+
+msgid "Inband"
+msgstr "带内"
+
+# Multi-trunk
+msgid "Configure PSTN trunks with load balancing and failover"
+msgstr "配置 PSTN 中继，支持负载均衡和故障转移"
+
+msgid "PSTN Trunks"
+msgstr "PSTN 中继"
+
+msgid "Trunk Name"
+msgstr "中继名称"
+
+msgid "Force Prefix"
+msgstr "强制前缀"
+
+msgid "Dial this prefix to force use this trunk (e.g., 9 for 9138xxxxxxx). Leave empty for automatic routing."
+msgstr "拨打此前缀强制使用此中继（例如 9 表示拨打 9138xxxxxxx）。留空则自动路由。"
+
+msgid "Weight"
+msgstr "权重"
+
+msgid "Higher weight = more calls routed to this trunk. Use for primary/backup setup."
+msgstr "权重越高，分配到该中继的通话越多。可用于主备配置。"
+
+msgid "Extension that receives incoming calls from PSTN"
+msgstr "PSTN 来电时接听的分机号码"
+
+# Global settings descriptions
+msgid "Master switch for VoIP service. Disable to turn off the entire VoIP system."
+msgstr "VoIP服务总开关。禁用将关闭整个VoIP系统。"
+
+msgid "Automatically restart Asterisk when configuration changes. Disable to apply changes manually."
+msgstr "配置变更时自动重启Asterisk。禁用时需要手动重启生效。"
+
+msgid "Extension number that receives incoming calls from PSTN. Leave empty to ring all extensions."
+msgstr "接收PSTN来电的分机号码。留空则所有分机同时振铃。"
+
+# Trunk descriptions
+msgid "Enable/disable this PSTN trunk."
+msgstr "启用/禁用此PSTN中继。"
+
+msgid "Unique name to identify this trunk."
+msgstr "用于标识此中继的唯一名称。"
+
+msgid "SIP server domain provided by your VoIP provider."
+msgstr "VoIP提供商提供的SIP服务器域名。"
+
+msgid "Forward server IP address from China Telecom IMS."
+msgstr "中国电信IMS提供的转发服务器IP地址。"
+
+msgid "SIP signaling port (default: 5060)."
+msgstr "SIP信令端口（默认：5060）。"
+
+msgid "Your PSTN phone number with country code (e.g., +8612345678901)."
+msgstr "带国家代码的PSTN电话号码（例如 +8612345678901）。"
+
+msgid "SIP authentication password from your provider."
+msgstr "提供商提供的SIP认证密码。"
+
+msgid "Enable NAT traversal. Keep enabled if Asterisk is behind a router."
+msgstr "启用NAT穿透。如果Asterisk在路由器后面，请保持启用。"
+
+msgid "Enable SRTP encryption for secure calls. Only enable if your provider supports it."
+msgstr "启用SRTP加密以保护通话安全。仅在提供商支持时启用。"
+
+msgid "Music File Name"
+msgstr "音乐文件名"
+
+msgid "Number of times to play the music before dialing (1-6 recommended)"
+msgstr "拨号前播放音乐的次数（建议1-6次）"
+
+msgid "PSTN Incoming Handler"
+msgstr "PSTN 呼入处理"
+
+msgid "Configure how to handle incoming PSTN calls"
+msgstr "配置如何处理 PSTN 呼入电话"
+
+msgid "Choose how to process incoming PSTN calls. Place your .gsm files in /etc/asterisk/sounds/ for IVR prompts, or in /tmp/playback/ for ringback music."
+msgstr "选择 PSTN 呼入处理方式。IVR 提示音请将 .gsm 文件放在 /etc/asterisk/sounds/，回铃音乐请放在 /tmp/playback/。"
+
+msgid "PSTN Handler Settings"
+msgstr "PSTN 处理设置"
+
+msgid "Incoming Call Mode"
+msgstr "呼入模式"
+
+msgid "Normal (Standard Ringback)"
+msgstr "普通模式（标准振铃音）"
+
+msgid "Direct Dial with Ringback Music"
+msgstr "直拨模式（带回铃音乐）"
+
+msgid "IVR Menu"
+msgstr "IVR 菜单"
+
+msgid "Normal: standard ringback tone. Direct Dial: play music then ring extension. IVR Menu: play menu and wait for key press."
+msgstr "普通模式：标准振铃音。直拨模式：播放音乐后振铃分机。IVR 菜单：播放菜单等待按键选择。"
+
+msgid "Direct Dial Options"
+msgstr "直拨模式选项"
+
+msgid "Enable Ringback Music"
+msgstr "启用回铃音乐"
+
+msgid "Music Directory"
+msgstr "音乐目录"
+
+msgid "GSM file name without extension (e.g., 'ring' for ring.gsm)"
+msgstr "GSM 文件名（不含扩展名，如 ring.gsm 填写 ring）"
+
+msgid "Play Loop Count"
+msgstr "播放循环次数"
+
+msgid "IVR Menu Options"
+msgstr "IVR 菜单选项"
+
+msgid "Welcome Prompt"
+msgstr "欢迎提示音"
+
+msgid "GSM file name without extension (place in /etc/asterisk/sounds/)"
+msgstr "GSM 文件名（不含扩展名，放在 /etc/asterisk/sounds/ 目录）"
+
+msgid "GSM file name without extension (placed in the music directory)"
+msgid "不带扩展名的GSM文件名（放置在音乐目录中）"
+
+msgid "Timeout (seconds)"
+msgstr "超时时间（秒）"
+
+msgid "Invalid Prompt"
+msgstr "无效按键提示音"
+
+msgid "IVR Key Mapping"
+msgstr "IVR 按键映射"
+
+msgid "Key (0-9)"
+msgstr "按键（0-9）"
+
+msgid "Action"
+msgstr "动作"
+
+msgid "Dial Extension"
+msgstr "拨打分机"
+
+msgid "Hangup"
+msgstr "挂断"
+
+msgid "Target"
+msgstr "目标"
+
+msgid "Extension number"
+msgstr "分机号码"
+
+msgid "PSTN Incoming"
+msgstr "PSTN 呼入"
+
+msgid "PSTN Incoming Handler"
+msgstr "PSTN 呼入处理"
+
+msgid "Choose how to process incoming PSTN calls. Place your .gsm files in the directory specified below. For ringback music use 'ring.gsm', for IVR use 'ivr-welcome.gsm' and 'ivr-invalid.gsm'."
+msgstr "选择 PSTN 来电的处理方式。请将 .gsm 文件放到下面指定的目录中。回铃音乐使用 'ring.gsm'，IVR 使用 'ivr-welcome.gsm' 和 'ivr-invalid.gsm'。"
+
+msgid "PSTN Handler Settings"
+msgstr "PSTN 处理设置"
+
+msgid "IAX2 Trunk"
+msgstr "IAX2 中继"
+
+msgid "Configure IAX2 trunks for multi-Asterisk interconnection"
+msgstr "配置多台 Asterisk 互联的 IAX2 中继"
+
+msgid "IAX2 trunks allow multiple Asterisk servers to interconnect. Each trunk represents a remote Asterisk server. Use dial prefix to route calls to the target server (e.g., prefix 81 means dial 816001 to reach extension 6001 on remote server)."
+msgstr "IAX2 中继允许多台 Asterisk 服务器互联。每个中继代表一台远程 Asterisk 服务器。使用拨号前缀将呼叫路由到目标服务器（例如前缀 81 表示拨打 816001 可到达远程服务器的分机 6001）。"
+
+msgid "IAX2 Global Settings"
+msgstr "IAX2 全局设置"
+
+msgid "Bind Port"
+msgstr "绑定端口"
+
+msgid "Bind Address"
+msgstr "绑定地址"
+
+msgid "0.0.0.0 for all interfaces, or specific IP address"
+msgstr "0.0.0.0 表示所有接口，或指定具体 IP 地址"
+
+msgid "IAX2 Trunks"
+msgstr "IAX2 中继列表"
+
+msgid "Remote Host/IP"
+msgstr "远程主机/IP"
+
+msgid "Secret"
+msgstr "密钥"
+
+# Conference Bridge
+msgid "Conference Bridge"
+msgstr "会议桥"
+
+msgid "Multi-party audio conferencing"
+msgstr "多人音频会议"
+
+msgid "Create conference rooms. Users can dial the room number to join. Multiple people can speak at the same time."
+msgstr "创建会议室。用户拨打会议室号码即可加入。多人可以同时发言。"
+
+msgid "Conference Rooms"
+msgstr "会议室"
+
+msgid "Room Number"
+msgstr "会议室号码"
+
+msgid "Conference room number (e.g., 300001)"
+msgstr "会议室号码（例如 300001）"
+
+msgid "Max Participants"
+msgstr "最大参与人数"
+
+msgid "Maximum participants (0 = unlimited)"
+msgstr "最大参与人数（0 = 无限制）"
+
+msgid "Conference Management"
+msgstr "会议管理"
+
+msgid "Conference Room"
+msgstr "会议室"
+
+msgid "participants"
+msgstr "人"
+
+msgid "Lock"
+msgstr "锁定"
+
+msgid "Unlock"
+msgstr "解锁"
+
+msgid "Mute All"
+msgstr "全员静音"
+
+msgid "Unmute All"
+msgstr "取消全员静音"
+
+msgid "Channel"
+msgstr "通道"
+
+msgid "CallerID"
+msgstr "来电号码"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Mute"
+msgstr "静音"
+
+msgid "Unmute"
+msgstr "取消静音"
+
+msgid "Kick"
+msgstr "踢出"
+
+msgid "No participants"
+msgstr "暂无参与者"
+
+msgid "No active conferences"
+msgstr "暂无活跃会议室"
+
+msgid "Load failed"
+msgstr "加载失败"
+
+msgid "Request failed"
+msgstr "请求失败"
+
+msgid "Kick this participant?"
+msgstr "确定踢出此人？"
 

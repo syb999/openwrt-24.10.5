@@ -21,7 +21,8 @@ define Package/luci-app-voip
            +asterisk13-res-musiconhold +asterisk13-res-rtp-asterisk \
            +asterisk13-res-rtp-multicast +asterisk13-res-srtp +asterisk13-app-verbose \
            +asterisk13-app-mixmonitor +asterisk13-format-wav +asterisk13-format-gsm \
-           +asterisk13-codec-gsm
+           +asterisk13-codec-gsm +asterisk13-func-db +asterisk13-app-read \
+           +asterisk13-chan-iax2
   PKGARCH:=all
 endef
 
@@ -49,9 +50,13 @@ define Package/luci-app-voip/install
 	$(INSTALL_DATA) ./luasrc/model/cbi/voip/trunk.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
 	$(INSTALL_DATA) ./luasrc/model/cbi/voip/extension.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
 	$(INSTALL_DATA) ./luasrc/model/cbi/voip/record_settings.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
+	$(INSTALL_DATA) ./luasrc/model/cbi/voip/pstn_handler.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
+	$(INSTALL_DATA) ./luasrc/model/cbi/voip/iax2.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
+	$(INSTALL_DATA) ./luasrc/model/cbi/voip/confbridge.lua $(1)/usr/lib/lua/luci/model/cbi/voip/
 	$(INSTALL_DATA) ./luasrc/view/voip/status.htm $(1)/usr/lib/lua/luci/view/voip/
 	$(INSTALL_DATA) ./luasrc/view/voip/record_files.htm $(1)/usr/lib/lua/luci/view/voip/
 	$(INSTALL_DATA) ./luasrc/view/voip/peer.htm $(1)/usr/lib/lua/luci/view/voip/
+	$(INSTALL_DATA) ./luasrc/view/voip/conference.htm $(1)/usr/lib/lua/luci/view/voip/
 	$(INSTALL_DATA) ./root/etc/config/voip $(1)/etc/config/
 	$(INSTALL_BIN) ./root/etc/init.d/voip $(1)/etc/init.d/
 	
